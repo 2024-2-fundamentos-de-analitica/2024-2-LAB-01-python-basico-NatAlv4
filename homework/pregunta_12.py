@@ -23,7 +23,7 @@ def pregunta_12():
             key: sum(
                 int(item.split(":")[1])
                 for line in data
-                if key in line.split
+                if key in line.split()[0]
                 for item in line.split()[4].split(",")
             )
             for line in data
@@ -31,6 +31,3 @@ def pregunta_12():
         }
 
         return ans
-
-
-print(pregunta_12())
