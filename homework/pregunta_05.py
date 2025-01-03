@@ -15,3 +15,26 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+
+    with open("files/input/data.csv") as file:
+        data = file.readlines()
+
+        ans = sorted(
+            [
+                (
+                    letra,
+                    int(
+                        max(
+                            line.split()[1] for line in data if line.split()[0] == letra
+                        )
+                    ),
+                    int(
+                        min(
+                            line.split()[1] for line in data if line.split()[0] == letra
+                        )
+                    ),
+                )
+                for letra in {line.split()[0] for line in data}
+            ]
+        )
+        return ans

@@ -27,3 +27,23 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+
+    with open("files/input/data.csv") as file:
+        data = file.readlines()
+
+        ans = sorted(
+            [
+                (
+                    int(val),
+                    sorted(
+                        set(line.split()[0] for line in data if line.split()[1] == val)
+                    ),
+                )
+                for val in {line.split()[1] for line in data}
+            ]
+        )
+
+        return ans
+
+
+print(pregunta_08())

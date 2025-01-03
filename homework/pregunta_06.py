@@ -26,3 +26,35 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+
+    with open("files/input/data.csv") as file:
+        data = file.readlines()
+
+        ans = [
+            (
+                key,
+                min(
+                    int(item.split(":")[1])
+                    for line in data
+                    for item in line.strip().split("\t")[4].split(",")
+                    if item.split(":")[0] == key
+                ),
+                max(
+                    int(item.split(":")[1])
+                    for line in data
+                    for item in line.strip().split("\t")[4].split(",")
+                    if item.split(":")[0] == key
+                ),
+            )
+            for key in sorted(
+                set(
+                    item.split(":")[0]
+                    for line in data
+                    for item in line.strip().split("\t")[4].split(",")
+                )
+            )
+        ]
+        return ans
+
+
+print(pregunta_06())

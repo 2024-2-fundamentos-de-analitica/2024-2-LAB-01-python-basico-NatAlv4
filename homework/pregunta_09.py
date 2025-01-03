@@ -24,3 +24,21 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+
+    with open("files/input/data.csv") as file:
+        data = file.readlines()
+
+        ans = {
+            item.split(":")[0]: sum(
+                1
+                for line in data
+                for code in {line.split()[4]}
+                for cant in code.split(",")
+                if cant.split(":")[0] == item.split(":")[0]
+            )
+            for line in data
+            for code in {line.split()[4]}
+            for item in code.split(",")
+        }
+
+        return ans

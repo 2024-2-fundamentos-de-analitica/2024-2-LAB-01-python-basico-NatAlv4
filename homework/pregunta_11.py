@@ -16,3 +16,20 @@ def pregunta_11():
 
 
     """
+
+    with open("files/input/data.csv") as file:
+        data = file.readlines()
+
+        ans = {
+            letter: sum(
+                int(num)
+                for line in data
+                for num in line.split()[1]
+                for let in line.split()[3].split(",")
+                if let == letter
+            )
+            for line in data
+            for letter in line.split()[3].split(",")
+        }
+
+        return ans

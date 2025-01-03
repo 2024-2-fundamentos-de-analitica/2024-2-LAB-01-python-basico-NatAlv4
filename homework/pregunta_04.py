@@ -26,3 +26,17 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    with open("files/input/data.csv") as file:
+        data = file.readlines()
+
+        ans = sorted(
+            [
+                (
+                    month,
+                    sum(1 for line in data if line.split()[2].split("-")[1] == month),
+                )
+                for month in {line.split()[2].split("-")[1] for line in data}
+            ]
+        )
+
+    return ans
